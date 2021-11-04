@@ -1,0 +1,16 @@
+PODS:
+  - DeepWallKids (2.3.0)
+
+DEPENDENCIES:
+  - DeepWallKids (= 2.3.0)
+
+SPEC REPOS:
+  trunk:
+    - DeepWallKids
+
+SPEC CHECKSUMS:
+  DeepWallKids: a8e28627389b4303ad096499fd524ddefbbddfed
+
+PODFILE CHECKSUM: 21a6fe6a42ac17ef87eb1d3b9c0963baf8f60597
+
+COCOAPODS: 1.10.1

@@ -1,0 +1,21 @@
+{
+  "name": "deepwallkids-react-native-sdk",
+  "version": "1.0.0",
+  "description": "DeepWallKids SDK react native wrapper",
+  "homepage": "https://deepwall.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Teknasyon-Teknoloji/deepwallkids-react-native-sdk.git"
+  },
+  "main": "src/index.js",
+  "keywords": [
+    "react-native",
+    "deepwallkids",
+    "deepwallkids sdk"
+  ],
+  "author": "DeepWall",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": ">=0.56.0"
+  }
+}
