@@ -20,4 +20,5 @@ export default {
   // Android ONLY events
   PAYWALL_CONSUME_SUCCESS: 'deepWallKidsPaywallConsumeSuccess',
   PAYWALL_CONSUME_FAIL: 'deepWallKidsPaywallConsumeFailure',
+  INIT_FAILURE: 'deepWallKidsInitFailure',
 };

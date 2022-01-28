@@ -8,6 +8,7 @@ import deepwall.core.DeepWall.initDeepWallWith
 import deepwall.core.DeepWall.setUserProperties
 import deepwall.core.models.*
 import io.reactivex.functions.Consumer
+import kotlinx.coroutines.*
 import manager.eventbus.EventBus
 import org.json.JSONArray
 import org.json.JSONException
@@ -39,7 +40,40 @@ open class RNDeepWallKidsModule(private val reactContext: ReactApplicationContex
 
     observeDeepWallEvents()
     val deepWallEnvironment = if (environment == 1) DeepWallEnvironment.SANDBOX else DeepWallEnvironment.PRODUCTION
-    initDeepWallWith(currentActivity!!.application, this.currentActivity!!, apiKey!!, deepWallEnvironment)
+
+    CoroutineScope(Dispatchers.IO).launch {
+
+      if (reactContext.hasCurrentActivity()) {
+        initDeepWallWith(
+          currentActivity!!.application,
+          currentActivity!!,
+          apiKey!!,
+          deepWallEnvironment
+        )
+      }
+      else{
+        withTimeoutOrNull(10000L) {
+          while (!reactContext.hasCurrentActivity()) {
+            delay(250)
+          }
+        }
+
+        if(reactContext.hasCurrentActivity()) {
+          initDeepWallWith(
+            currentActivity!!.application,
+            currentActivity!!,
+            apiKey!!,
+            deepWallEnvironment
+          )
+        } else {
+          val map = WritableNativeMap()
+          val modelData = convertJsonToMap(convertJson(""))
+          map.putMap("data", modelData)
+          map.putString("event", "deepWallKidsInitFailure")
+          deepWallEmitter.sendEvent(reactContext, "DeepWallKidsEvent", map)
+        }
+      }
+    }
   }
 
   @ReactMethod
