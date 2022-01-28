@@ -104,6 +104,7 @@ DeepWallKidsEventBus.getInstance().addListener(DeepWallKidsEvents.PAYWALL_OPENED
     data
   );
 });
+
 ```
 
 - For example, you may listen all events from sdk like below.
@@ -119,12 +120,17 @@ Object.values(DeepWallKidsEvents).map((item) => {
 
 - Adding and removing event listener example
 ```javascript
-import { DeepWallKidsEventBus, DeepWallKidsEvents } from 'deepwallkids-react-native-sdk';
+import { DeepWallKidsEventBus, DeepWallKidsEvents, DeepWallKidsEnvironments } from 'deepwallkids-react-native-sdk';
 
 componentDidMount() {
   DeepWallKidsEventBus.getInstance().addListener(DeepWallKidsEvents.PAYWALL_OPENED, this.paywallOpenedListener = data => {
     // handle the event
   })
+
+  DeepWallKidsEventBus.getInstance().addListener(DeepWallKidsEvents.INIT_FAILURE, function (data) {
+    //init failure you may call init again
+    DeepWallKidsEventBus.getInstance().initialize('{API_KEY}', DeepWallKidsEnvironments.PRODUCTION);
+  });
 }
 
 componentWillUnmount() {
