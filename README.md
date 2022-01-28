@@ -120,7 +120,7 @@ Object.values(DeepWallKidsEvents).map((item) => {
 
 - Adding and removing event listener example
 ```javascript
-import { DeepWallKidsEventBus, DeepWallKidsEvents, DeepWallKidsEnvironments } from 'deepwallkids-react-native-sdk';
+import DeepWallKids, { DeepWallKidsEventBus, DeepWallKidsEvents, DeepWallKidsEnvironments } from 'deepwallkids-react-native-sdk';
 
 componentDidMount() {
   DeepWallKidsEventBus.getInstance().addListener(DeepWallKidsEvents.PAYWALL_OPENED, this.paywallOpenedListener = data => {
@@ -129,7 +129,7 @@ componentDidMount() {
 
   DeepWallKidsEventBus.getInstance().addListener(DeepWallKidsEvents.INIT_FAILURE, function (data) {
     //init failure you may call init again
-    DeepWallKidsEventBus.getInstance().initialize('{API_KEY}', DeepWallKidsEnvironments.PRODUCTION);
+    DeepWallKids.getInstance().initialize('{API_KEY}', DeepWallKidsEnvironments.PRODUCTION);
   });
 }
 
